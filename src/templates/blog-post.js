@@ -4,6 +4,7 @@ import { PostArticle, PostFooterList, PostHeader } from "../styles/postStyle"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Utterances from "../components/Utterances"
 
 const BlogPostTemplate = ({
   data: { previous, next, site, markdownRemark: post },
@@ -27,9 +28,7 @@ const BlogPostTemplate = ({
           itemProp="articleBody"
         />
         <hr />
-        <footer>
-          <Bio />
-        </footer>
+        <Utterances />
       </PostArticle>
       <nav className="blog-post-nav">
         <ul

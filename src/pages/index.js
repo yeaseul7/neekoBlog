@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
-
+import Utterances from "../components/Utterances"
 import RecentPostBox from "../components/recentpost"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -102,6 +102,7 @@ const BlogIndex = ({ data, location }) => {
           )
         })}
       </ArticleMain>
+      <Utterances />
     </Layout>
   )
 }
