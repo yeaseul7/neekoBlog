@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[neeko의 개발 블로그입니다.]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 09 Aug 2024 03:17:34 GMT</lastBuildDate><item><title><![CDATA[github-pages notfound error 이해하기]]></title><description><![CDATA[Github pages React-router 404 Issue 이번에는 CRA를 통해 만든 blog를 github pages에 배포했을 때
+react-router에 인해 refresh 후 404 error…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/ghpages-error/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/ghpages-error/</guid><pubDate>Thu, 08 Aug 2024 12:40:56 GMT</pubDate><content:encoded>&lt;h2&gt;Github pages React-router 404 Issue&lt;/h2&gt;
+&lt;p&gt;이번에는 CRA를 통해 만든 blog를 github pages에 배포했을 때
+react-router에 인해 refresh 후 404 error가 반환되는 문제를 다룰 것이다.&lt;/p&gt;
+&lt;h4&gt;문제 원인&lt;/h4&gt;
+&lt;p&gt;github pages가 정적 사이트 호스팅 서비스 이기 때문&lt;/p&gt;
+&lt;p&gt;react-router는 새로고침을 하면 클라이언트 측에서 라우팅을 처리한다.
+새로 고침을 하거나 경로를 변경하면 페이지가 새로 로드되는 것이 아닌 js가 동적으로 콘텐츠를 변경시킨다.&lt;/p&gt;
+&lt;p&gt;근데 Github pages는 라우팅을 모르기 때문에 경로가 변경되거나 할 때 경로에 해당하는 파일을 찾으려고 한다.&lt;/p&gt;
+&lt;h4&gt;발생 현상&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;data:image/png;base64,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&quot; alt=&quot;error 화면&quot;&gt;&lt;/p&gt;
+&lt;p&gt;나도 마찬가지로 react-router를 사용중이었고
+이 issue에 직면하게 되었다.&lt;/p&gt;
+&lt;h3&gt;해결 방법&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://create-react-app.dev/docs/deployment/#notes-on-client-side-routing&quot;&gt;CRA Docs&lt;/a&gt;에 들어가면 이 문제에 대해 상세히 설명해주고 있다.&lt;/p&gt;
+&lt;p&gt;react-router가 사용하는 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;BrowserRouter /&gt;&lt;/code&gt;가 라우팅 과정에서 동적으로 페이지를 변환시켜주는 것이라고 볼 수 있는데 이게 정적 사이트 호스팅을 지원하는 gh pages에서는 동작할 수 없다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://create-react-app.dev/docs/deployment/#notes-on-client-side-routing&quot;&gt;CRA Docs&lt;/a&gt;에서 대체적으로 아래의 방법을 사용한다고 하니
+나도 &lt;a href=&quot;https://github.com/rafgraph/spa-github-pages?tab=readme-ov-file&quot;&gt;spa github pages&lt;/a&gt;를 참고해서 문제 해결을 시도했다.&lt;/p&gt;
+&lt;p&gt;이 방법은 404 에러가 나면 404.html 파일로 보내고 거기서 script로 경로를 찾을 수 있게 해주는 방법이었다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;두번째 방법을 선택한 이유&lt;/strong&gt;
+처음에는 404 error가 이 경우밖에 나는건 아닐 수 있는데 이렇게 해도 되나 고민했디.
+하지만 redirect 시키며 경로를 찾게 해주는 방법이 대체적으로 많이 쓰이기도 하고
+첫번째 방법은 코드를 싹 고쳐야 하는 번거로움이 있다고 생각해서 아래의 방법을 선택했다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/rafgraph/spa-github-pages?tab=readme-ov-file#usage-instructions&quot;&gt;문서&lt;/a&gt;를 보면 실행 절차에 대해 더 자세히 얘기해준다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/rafgraph/spa-github-pages/blob/gh-pages/404.html&quot;&gt;404.html&lt;/a&gt;을 그대로 복사해서 루트 디렉토리에 붙여넣는다.
+여기서 만약에 custom domain을 사용하지 않고 있으면 404.html 파일에 pathSegmentsToKeep를 1로 바꿔주고
+react-router를 사용하는 부분도 절대 경로를 repo 이름으로 변경해줘야 한다&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;BrowserRouter basename=&quot;/yeaseul7.github.io&quot;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;그리고 localhost:3000에서 돌리던 로컬 서버는 기본 경로인 repo name이 추가되었기 때문에
+테스트 하려면 localhost:3000/yeaseul7.github.io/로 접속해야한다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[재귀함수 알고리즘]]></title><description><![CDATA[javascript로 재귀함수 구현하기 재귀함수란? 함수 안에 자기 자신을 다시 호출하는 함수 대표적 사용 예시
+피보나치 수열 구현하기 프로그래머스를 통한 예시 보기 문제. 구슬을 나누는 경우의 수
+난이도. Lv…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/recursion-algo/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/recursion-algo/</guid><pubDate>Thu, 08 Aug 2024 12:34:56 GMT</pubDate><content:encoded>&lt;h2&gt;javascript로 재귀함수 구현하기&lt;/h2&gt;
+&lt;h3&gt;재귀함수란?&lt;/h3&gt;
+&lt;p&gt;함수 안에 자기 자신을 다시 호출하는 함수&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;대표적 사용 예시&lt;/strong&gt;
+피보나치 수열 구현하기&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;프로그래머스를 통한 예시 보기&lt;/h3&gt;
+&lt;p&gt;문제. &lt;a href=&quot;https://school.programmers.co.kr/learn/courses/30/lessons/120840&quot;&gt;구슬을 나누는 경우의 수&lt;/a&gt;
+난이도. Lv0&lt;/p&gt;
+&lt;h4&gt;문제 설명&lt;/h4&gt;
+&lt;p&gt;머쓱이는 구슬을 친구들에게 나누어주려고 합니다. 구슬은 모두 다르게 생겼습니다. 머쓱이가 갖고 있는 구슬의 개수 balls와 친구들에게 나누어 줄 구슬 개수 share이 매개변수로 주어질 때, balls개의 구슬 중 share개의 구슬을 고르는 가능한 모든 경우의 수를 return 하는 solution 함수를 완성해주세요.&lt;/p&gt;
+&lt;h4&gt;제한사항&lt;/h4&gt;
+&lt;p&gt;1 ≤ balls ≤ 30
+1 ≤ share ≤ 30
+구슬을 고르는 순서는 고려하지 않습니다.
+share ≤ balls&lt;/p&gt;
+&lt;h4&gt;Hint&lt;/h4&gt;
+&lt;p&gt;서로 다른 n개 중 m개를 뽑는 경우의 수 공식은 다음과 같습니다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://grepp-programmers.s3.ap-northeast-2.amazonaws.com/files/production/54c8b2b9-f88c-4a09-8956-7560ff7ea918/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-08-01%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.37.53.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;나의 풀이&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;balls&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; share&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;round&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;recursion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;balls&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;recursion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;balls &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; share&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;recursion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;share&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;recursion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; n &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; n &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; n &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;recursion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;여기서 재귀함수가 &lt;code class=&quot;language-text&quot;&gt;recursion&lt;/code&gt; 함수 인데
+&lt;code class=&quot;language-text&quot;&gt;recursion&lt;/code&gt; 안에서 &lt;code class=&quot;language-text&quot;&gt;recursion&lt;/code&gt; 자기 자신을 호출하고 있는 것을 알 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;(n === 0 || n === 1) ? 1 &lt;/code&gt;이라는 종결점을 지어두고
+이외에 자기 자신을 계속해서 호출하게 한다.
+그러면 피보나치 수열 구현이 완료된다.&lt;/p&gt;
+&lt;p&gt;재귀함수의 대표적인 예시가 피보나치 수열을 구현하는 것인데
+해당 문제가 연습하기에 좋아 보여서 가지고 왔다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[About. Neeko]]></title><description><![CDATA[Hello, Welcome to Neeko 👋🏻 안녕하세요. 이예슬(Neeko…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/about/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/about/</guid><pubDate>Mon, 05 Aug 2024 03:22:22 GMT</pubDate><content:encoded>&lt;h3&gt;Hello, Welcome to Neeko 👋🏻&lt;/h3&gt;
+&lt;p&gt;안녕하세요. &lt;strong&gt;이예슬(Neeko)&lt;/strong&gt; 입니다.&lt;/p&gt;
+&lt;p&gt;해당 블로그는 공부하는 과정에서 배운 내용을 정리하고, 프로젝트를 진행하면서 느낀 점을 기록하는 데에 목적을 두고 있습니다.&lt;/p&gt;
+&lt;p&gt;도움이 되셨다면 좋겠습니다. 감사합니다.🙇🏻‍♀️ 오류나 문의사항은 이메일로 보내주세요.&lt;/p&gt;
+&lt;h3&gt;Yeaseul Contact.📬&lt;/h3&gt;
+&lt;p&gt;📨Email. &lt;strong&gt;&lt;a href=&quot;mailto:cutie32769@gmail.com&quot;&gt;cutie32769@gmail.com&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;👩🏻‍💻GitHub. &lt;a href=&quot;https://github.com/yeaseul7&quot;&gt;https://github.com/yeaseul7&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://ghchart.rshah.org/yeaseul7&quot; alt=&quot;yeaseulGithub잔디&quot;&gt;&lt;/p&gt;
+&lt;p&gt;2024.03~&lt;/p&gt;
+&lt;h4&gt;퀄리소프트&lt;/h4&gt;
+&lt;p&gt;Work.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;javascript 기반 CRM 개발&lt;/li&gt;
+&lt;li&gt;Azure 이용한 node.js 서버 구축&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;javascript, node.js, azure&lt;/p&gt;
+&lt;p&gt;2023.12~2024.03&lt;/p&gt;
+&lt;h4&gt;투인피니티(인턴)🐣&lt;/h4&gt;
+&lt;p&gt;Work.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;문제은행 project 참여📚&lt;/li&gt;
+&lt;li&gt;문제은행 : 데이터 기반 문제집 사진 촬영하면 비슷한 문제 제작해주는 서비스&lt;/li&gt;
+&lt;li&gt;촬영한 사진 및 문제 데이터 저장 관리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;java, flutter, firebase, postgresql&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;folaio project 참여📷&lt;/li&gt;
+&lt;li&gt;folaio : SNS기반 사진촬영 대회 플랫폼&lt;/li&gt;
+&lt;li&gt;기본 디자인 및 사진 및 동영상 촬영 기능 구현&lt;/li&gt;
+&lt;li&gt;데이터 저장 로직 구현 및 설계&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;java, flutter, firebase&lt;/p&gt;
+&lt;p&gt;해당 블로그는 &lt;strong&gt;React, TypeScript, TailwindCSS, Node.js&lt;/strong&gt;를 사용하여 제작하였습니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[교내 소프 경진대회 'domidomi'프로젝트 회고]]></title><description><![CDATA[2023년 소프트웨어 경진대회 대상을 수상[회고록] 이미지 프로젝트 이름 domidomi 💼 교내 행복 기숙사에 업무 효율을 높이기 위한 B2B 프로젝트 많은 근로생들이 근무하는 환경에서 업무 시스템이 매우 비효율 적이었고 NAS…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/shku-contest-retro/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/shku-contest-retro/</guid><pubDate>Wed, 20 Dec 2023 12:34:56 GMT</pubDate><content:encoded>&lt;h2&gt;2023년 소프트웨어 경진대회 대상을 수상[회고록]&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://yeaseul7.github.io/neekoBlog/images/softwareAward1.png&quot; alt=&quot;이미지&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;프로젝트 이름&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;domidomi&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;💼 교내 행복 기숙사에 업무 효율을 높이기 위한 B2B 프로젝트&lt;/p&gt;
+&lt;p&gt;많은 근로생들이 근무하는 환경에서 업무 시스템이 매우 비효율 적이었고 NAS를 이용한 운영은 파일 업로드와 운영관리를 복잡하게 하였다.
+따라서 근로생부터 교직원분들까지 모두가 쉽게 이용 가능한 프로젝트를 개발하였다.&lt;/p&gt;
+&lt;h3&gt;프로젝트 기술&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;Next.js&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;React.js&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;Typescript&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;Styled-compoenent&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;Emotion&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;Vercel&lt;/code&gt;,&lt;code class=&quot;language-text&quot;&gt;Postman&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;Spring&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;Notion&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;Mysql&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;기획 및 설계&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://yeaseul7.github.io/neekoBlog/images/softwareAward2.png&quot; alt=&quot;이미지&quot;&gt;&lt;/p&gt;
+&lt;p&gt;기숙에서 근로를 하던 팀장의 제안에 프로젝트가 이루어졌다.
+행복 기숙사의 요청을 적극 반영하고 이용자의 연령대를 고려하여
+UI/UX 에서 중요한 부분을 브리핑 해주었다.&lt;/p&gt;
+&lt;p&gt;그 요청에 따라서 기술을 React, Styled-compoenet, Next.js 등을 골랐는데
+당시에는 파일 기반 라우팅으로 인해 디렉토리 구조가 이해하기 쉬웠고
+Ts 적용으로 코드를 보다 이해하기 쉬워 협업에 용이했다.&lt;/p&gt;
+&lt;p&gt;😇 &lt;strong&gt;아쉬운 점&lt;/strong&gt;
+SEO가 필요하지 않은데 당시 Next.js를 도입한 명확한 이유가 없었다는 점에서 아쉬움이 있다.
+위와 같이 필요한 기술이 있으면 그 기술을 채택한 이유나 근거가 명확해야 하는데 그 부분이 부족했다.
+다음에는 명확한 근거를 갖고 기술을 채택할 뿐더러 문서화를 해야겠다고 생각했다.&lt;/p&gt;
+&lt;h3&gt;프로젝트 진행&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://yeaseul7.github.io/neekoBlog/images/softwareAward3.png&quot; alt=&quot;이미지&quot;&gt;
+피그마와 노션을 이용해서 회의록을 작성하고 피그마로 소통하는 등
+문서화가 잘 되었던 프로젝트였다고 생각한다.&lt;/p&gt;
+&lt;p&gt;오류가 있는 부분을 팀 주간 회의에서 브리핑 하고 행복 기숙사의 요청 사항도 기록하여 까먹지 않고 확인할 수 있었다.
+보통 프로젝트 하고 나서 회고를 작성할 때에도 잘 기억나지 않은 부분이 있는데 노션에 기록이 되어있어서 원활하게 리마인드 할 수 있었다고 생각한다.&lt;/p&gt;
+&lt;p&gt;😇 &lt;strong&gt;아쉬운 점&lt;/strong&gt;
+개인적으로 취준 기간에 프로젝트에 참여하다보니 시간이 많이 부족했다. 더 잘 할 수 있었는데 아쉬움이 많이 남았다. 그리고 코드 리뷰나 기술에 대한 분석이 부족했다고 생각한다. 좀 더 깃헙 Issue나 PR을 활용했으면 좋았을 것 같다고 생각했다.&lt;/p&gt;
+&lt;p&gt;웹 사이트 성능을 확인하지 못하고 사용자 경험 개선을 스스로 충분히 고려하지 못했다.
+단순 기능 개발에 초점을 맞췄다는게 아쉬웠고 앞으로는 사용자 경험 개선을 고려해서 최적화와 같은 분석 및 적용을 해야겠다고 생각했다.&lt;/p&gt;
+&lt;h3&gt;프로젝트 결과&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://yeaseul7.github.io/neekoBlog/images/softwareAward1.png&quot; alt=&quot;이미지&quot;&gt;
+결과적으로 학교에 도움이 되는 사이트를 만들었고 운영도 되고 있었던 프로젝트였기에 대상을 수상할 수 있었다고 생각한다.
+기능 개발 보다는 성능을 생각할 수 있게 만들어준 프로젝트였다. 당시에는 생각하지 못했지만 프로젝트를 회고하면서 부족한 부분이 많이 보였고 그만큼 배웠다는 것에 고마운 프로젝트이다.&lt;/p&gt;
+&lt;p&gt;기술&lt;/p&gt;</content:encoded></item><item><title><![CDATA[GDSC 회고록]]></title><description><![CDATA[GDSC란 무엇인가요? 학생들이 개발/리더십 능력을 키울 수 있도록 지원하는 프로그램입니다.
+GDSC성공회대 공식 사이트에서 더 자세한 내용을 참고할 수 있습니다. GDSC에서 무엇을 했나요? Web Study
+매주 React, Next.js…]]></description><link>https://gatsbystarterblogsource.gatsbyjs.io/gdsc-retro/</link><guid isPermaLink="false">https://gatsbystarterblogsource.gatsbyjs.io/gdsc-retro/</guid><pubDate>Sun, 08 Oct 2023 12:34:56 GMT</pubDate><content:encoded>&lt;h3&gt;GDSC란 무엇인가요?&lt;/h3&gt;
+&lt;p&gt;학생들이 개발/리더십 능력을 키울 수 있도록 지원하는 프로그램입니다.
+&lt;a href=&quot;https://gdsc.community.dev/sungkonghoe-university/&quot;&gt;GDSC성공회대 공식 사이트&lt;/a&gt;에서 더 자세한 내용을 참고할 수 있습니다.&lt;/p&gt;
+&lt;h3&gt;GDSC에서 무엇을 했나요?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Web Study&lt;/strong&gt;
+매주 React, Next.js, Typescript등 프로젝트에 필요한 기술들을 학습하였습니다.
+여기서 처음으로 React를 사용해보았으며 실무를 통해서 프로젝트를 마칠 수 있는 정도로 빠르게 성장할 수 있었습니다.
+이 과정에서 React, Vue, Angular등 다양한 프레임워크가 존재한다는 것을 깨달았으며
+Next.js를 사용해봄으로써 SSR에 대해 더 잘 이해할 수 있었습니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;정규 세션&lt;/strong&gt;
+Web, Backend, Mobile 파트가 모여서 프로젝트를 구상하고 참여함으로써 각 파트와 소통할 수 있었습니다.
+소통 과정에서 Backend와 api로 소통하는 방법 혹은 프로토콜의 이해를 도울 수 있었습니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;해커톤&lt;/strong&gt;
+전세계 GDSC 소속 학생들을 대상으로 열린 대규모 챌린지 입니다.
+Mintalk라는 프로젝트에 참여하였으며 해당 프로젝트는 의사들과 환자들을 연결해주는 서비스입니다.
+정신과를 주 타겟으로 삼았으며 mock data를 기반으로 프로젝트를 출시하였습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;성장 Point&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;팀원들과 소통하면서 개발에 대해 지식이 부족하였기에 이해를 못하는 등의 어려움이 있었습니다.
+이를 해결하기 위해서 팀원들과 소규모 스터디를 운영하고 지식을 공유하는 시간을 가졌고 일주일에 1개의 post를 올리는 챌린지에 참여하게 되었습니다.
+또한 다른 사람들에게 스스로의 주장을 더 어필하기 위해서 탄탄한 배경이 있어야함을 느꼈습니다.
+개발에 있어서 웹에 대한 기본 지식이 매우 부족하다고 생각했습니다. 스터디와 더불어서 개인 학습시간을 늘려 GDSC에 처음 참여할떄와 비교해 많은 지식을 얻어갔음을 느꼈습니다.
+어느 솔루션을 해결할 때 공식문서를 최대한 이해해야함을 느꼈습니다.
+처음에는 무작정 구글링을 통해 기능 구현에만 집중했습니다. 코드 복붙보다 동작원리를 최대한 이해한 후 기능을 구현하는 것이 스스로의 성장 속도를 증진시킴을 이해했습니다.
+&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;사람들과 협업하면서 &lt;strong&gt;같이 고민&lt;/strong&gt;하는 방법을 배웠습니다.
+혼자 문제를 해결하려 노력하기보다 팀원들과 소통을 통해 어려움을 해결하고 잊지 않으려 노력하는 것이 효율이 더 좋을 수 있다는 것을 꺠달았습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;작성 일자 : 2024.06.25&lt;/em&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
